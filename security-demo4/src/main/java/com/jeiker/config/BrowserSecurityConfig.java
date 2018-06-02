@@ -27,9 +27,16 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.formLogin()  // 表单验证
 //        http.httpBasic()    // 默认弹窗验证
+                .loginPage("/x-login.html")     // 自定义登录界面
+                .loginProcessingUrl("/authentication/form") // 登录请求
                 .and()
                 .authorizeRequests()
+                .antMatchers("/x-login.html")
+                .permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .csrf()         // 关闭 csrf
+                .disable();
     }
 }
