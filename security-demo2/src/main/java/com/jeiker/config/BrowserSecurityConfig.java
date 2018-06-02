@@ -10,8 +10,14 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//        http.formLogin()  // 表单验证
-        http.httpBasic()    // 默认弹窗验证
+        // 1. UsernamePasswordAuthenticationFilter
+        // 2. BasicAuthenticationFilter
+        // 3. ... ...
+        // 4. ExceptionTranslationFilter
+        // 5. FilterSecurityInterceptor
+
+        http.formLogin()  // 表单验证
+//        http.httpBasic()    // 默认弹窗验证
                 .and()
                 .authorizeRequests()
                 .anyRequest()
